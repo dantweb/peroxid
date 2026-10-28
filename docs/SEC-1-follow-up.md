@@ -34,7 +34,7 @@ git push origin main
 ## 3. hydroxid: merge this branch, update the pins, re-audit
 
 ```bash
-cd /home/dtkachev/osc/strpwt7-nov26/hydroxid-project
+cd /home/dtkachev/osc/strpwt7-nov26/peroxid
 git checkout main
 git merge --no-ff feature/zod4-advisories
 npm update @dantweb/oxid-fe-core @dantweb/oxid-fe-user

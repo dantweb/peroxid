@@ -7,7 +7,7 @@ oxid-fe-core   internal library
    ↑
 oxid-fe-user   the storefront application (shop, checkout, payments, dashboard, …)
    ↑
-hydroxid-project   ← this repository: depends on oxid-fe-user, adds its own plugins, themes, instances
+peroxid            ← this repository: depends on oxid-fe-user, adds its own plugins, themes, instances
 ```
 
 | What                      | Where                                                                                                                                                   |

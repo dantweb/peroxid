@@ -1,5 +1,5 @@
 {
-  "name": "hydroxid-project",
+  "name": "peroxid",
   "version": "0.10.0",
   "description": "HydroXid — a client storefront built on @dantweb/oxid-fe-user: own plugins, own themes, GDPR cookie consent.",
   "private": true,
