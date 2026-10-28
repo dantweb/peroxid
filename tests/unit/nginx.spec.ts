@@ -25,8 +25,8 @@ describe('renderNginx', () => {
 
     expect(conf).toContain('listen 2053 ssl;');
     expect(conf).toContain('listen 2083 ssl;');
-    expect(conf).toContain('ssl_certificate /etc/ssl/hydroxid/origin.crt;');
-    expect(conf).toContain('/var/www/oxid/oxid75/hydroxid-project/current/dist');
+    expect(conf).toContain('ssl_certificate /etc/ssl/peroxid/origin.crt;');
+    expect(conf).toContain('/var/www/oxid/oxid75/peroxid/current/dist');
     expect(conf).toContain('proxy_pass https://127.0.0.1:8543/graphql/;');
     expect(conf).toContain('proxy_set_header Host pay1.oxid.dev;');
   });

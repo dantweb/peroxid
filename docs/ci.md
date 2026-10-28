@@ -27,10 +27,10 @@ report and must never upload traces of a live run.
 
 ## Deployment (`.github/workflows/deploy.yml`) — manual only
 
-Target: `pay1.oxid.dev`, directory `/var/www/oxid/oxid75/hydroxid-project`:
+Target: `pay1.oxid.dev`, directory `/var/www/oxid/oxid75/peroxid`:
 
 ```
-hydroxid-project/
+peroxid/
 ├── releases/<commit-sha>/   dist/  build/instances/  build/nginx-pay1.conf   (the five newest are kept)
 └── current  →  releases/<sha>                                                  (atomic switch)
 ```
@@ -38,8 +38,14 @@ hydroxid-project/
 **Who writes what.** The project folder is written **only by the CI user `github-actions`** — never by
 root. A person with root runs `deploy/server-setup.sh` **once** (outside the folder): it creates a
 self-signed origin certificate (Cloudflare reaches custom ports over TLS in "Full" mode, **525**
-without), and installs `/etc/nginx/conf.d/hydroxid-project.conf`, a root-owned one-liner that
-`include`s `…/hydroxid-project/current/build/nginx-pay1.conf` — the server blocks ship with each release.
+without), and installs `/etc/nginx/conf.d/peroxid.conf`, a root-owned one-liner that
+`include`s `…/peroxid/current/build/nginx-pay1.conf` — the server blocks ship with each release.
+
+**Rename from `hydroxid-project`.** Run `deploy/server-setup.sh` once more as root, then deploy: the
+script moves `/var/www/oxid/oxid75/hydroxid-project` and `/etc/ssl/hydroxid` to their `peroxid` names,
+removes `/etc/nginx/conf.d/hydroxid-project.conf` and leaves symlinks at the old paths so the live
+release keeps serving. After the next deploy the symlinks can be removed
+(`rm /var/www/oxid/oxid75/hydroxid-project /etc/ssl/hydroxid`).
 
 `workflow_dispatch` with the input `deploy`, in the `pay1` environment. It repeats the gate, builds and
 ships over SSH as `github-actions` (`deploy/deploy.sh`), then `deploy/remote-activate.sh` switches
@@ -71,7 +77,7 @@ nginx on pay1 listens on these origin ports with TLS and proxies `/graphql/` to 
 A provider's return URL carries `session_id` / `PayerID` / `token`, a password-reset link a `uid`. The
 instance blocks therefore log with `log_format headless` (`$remote_addr - [$time_local] "$request_method $uri
 $server_protocol" $status $body_bytes_sent`): the path only, no query string, no referer. Every
-`access_log` of `build/nginx-pay1.conf` (written to `/var/log/nginx/hydroxid-project.access.log`) uses it;
+`access_log` of `build/nginx-pay1.conf` (written to `/var/log/nginx/peroxid.access.log`) uses it;
 `tests/unit/nginx.spec.ts` renders the config and fails on `$request`, `$request_uri`, `$args`,
 `$query_string` or `$http_referer`.
 

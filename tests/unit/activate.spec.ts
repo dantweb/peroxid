@@ -23,7 +23,7 @@ function sandbox(healthy: boolean) {
   chmodSync(reload, 0o755);
   chmodSync(curl, 0o755);
 
-  const base = join(root, 'hydroxid-project');
+  const base = join(root, 'peroxid');
   const release = (name: string, ports = [2053, 2083]): string => {
     const dir = join(base, 'releases', name);
     mkdirSync(join(dir, 'dist'), { recursive: true });

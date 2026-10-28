@@ -6,7 +6,7 @@
 set -eu
 
 : "${DEPLOY_HOST:?}" "${DEPLOY_USER:?}"
-BASE="${DEPLOY_PATH:-/var/www/oxid/oxid75/hydroxid-project}"
+BASE="${DEPLOY_PATH:-/var/www/oxid/oxid75/peroxid}"
 RELEASE="$BASE/releases/${GITHUB_SHA:-$(git rev-parse HEAD)}"
 SSH="ssh -o BatchMode=yes ${DEPLOY_SSH_OPTS:-}"
 TARGET="$DEPLOY_USER@$DEPLOY_HOST"

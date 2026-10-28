@@ -2,7 +2,7 @@
 #
 # Pre-commit quality gate — run it before every commit.
 #
-# The same file lives in oxid-fe-core, oxid-fe-user and peroxid (formerly hydroxid-project). It runs a gate only
+# The same file lives in oxid-fe-core, oxid-fe-user and peroxid. It runs a gate only
 # when the repo's package.json defines the npm script, so one file serves all three and the
 # gates stay the ones documented in docs/quality-gates.md (CI runs the same npm scripts).
 #

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Runs ON the server as the CI user `github-actions` (never root), called by deploy.sh:
-#   remote-activate.sh /var/www/oxid/oxid75/hydroxid-project/releases/<sha>
+#   remote-activate.sh /var/www/oxid/oxid75/peroxid/releases/<sha>
 # It writes only inside the project folder: switches `current` to the release (nginx includes
 # current/build/nginx-pay1.conf), reloads nginx through its one sudo rule, health-checks every port
 # and ROLLS BACK to the previous release if nginx did not come up with the new configuration.
@@ -8,7 +8,7 @@
 set -eu
 
 RELEASE="$1"
-BASE="$(dirname "$(dirname "$RELEASE")")"   # …/hydroxid-project
+BASE="$(dirname "$(dirname "$RELEASE")")"   # …/peroxid
 PREVIOUS="$(readlink -f "$BASE/current" 2>/dev/null || true)"
 RELOAD="${NGINX_RELOAD:-sudo -n /usr/sbin/nginx -s reload}"
 CURL="${HEALTH_CURL:-curl -ksf -m 10}"

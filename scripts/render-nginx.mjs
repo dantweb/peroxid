@@ -22,7 +22,7 @@ const TARGETS = {
   },
   // pay1.oxid.dev: host nginx; the OXID shop's apache container listens on 127.0.0.1:8543 (TLS)
   pay1: {
-    root: '/var/www/oxid/oxid75/hydroxid-project/current',
+    root: '/var/www/oxid/oxid75/peroxid/current',
     serverName: 'pay1.oxid.dev',
     upstream: 'https://127.0.0.1:8543',
     upstreamHost: 'pay1.oxid.dev',
@@ -30,7 +30,7 @@ const TARGETS = {
     // Cloudflare reaches the custom ports over TLS ("Full" mode: a self-signed origin certificate is
     // accepted); without it the visitor sees error 525. deploy/remote-activate.sh creates the certificate.
     originTls: true,
-    accessLog: '/var/log/nginx/hydroxid-project.access.log',
+    accessLog: '/var/log/nginx/peroxid.access.log',
   },
 };
 
@@ -61,7 +61,7 @@ server {
     listen ${port}${target.originTls ? ' ssl' : ''};
 ${
   target.originTls
-    ? '    ssl_certificate /etc/ssl/hydroxid/origin.crt;\n    ssl_certificate_key /etc/ssl/hydroxid/origin.key;\n'
+    ? '    ssl_certificate /etc/ssl/peroxid/origin.crt;\n    ssl_certificate_key /etc/ssl/peroxid/origin.key;\n'
     : ''
 }    server_name ${target.serverName};
     access_log ${target.accessLog} headless;

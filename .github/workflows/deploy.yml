@@ -1,7 +1,7 @@
 name: Deploy to pay1.oxid.dev
 
 # MANUAL ONLY: never on push. Starting it is a decision of the project owner.
-# Ships the build to /var/www/oxid/oxid75/hydroxid-project on pay1.oxid.dev:
+# Ships the build to /var/www/oxid/oxid75/peroxid on pay1.oxid.dev:
 #   pay1.oxid.dev:2053  hydroxid-vibrant     pay1.oxid.dev:2083  hydroxid-dark-ocean
 #   pay1.oxid.dev:8443  hydroxid-light-red
 on:
